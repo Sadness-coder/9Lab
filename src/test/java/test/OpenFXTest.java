@@ -40,12 +40,7 @@ public class OpenFXTest {
         openFXAccountsPage = openFXProfilePage.selectViewAccountsTab();
         openFXAccountsPage.openSettingOfDemoAccountButtonClick();
         openFXDemoAccountPage = openFXAccountsPage.infoAboutAccountButtonClick();
-        openFXDemoAccountPage.writePreviousBalance()
-                .clickTopUpButton()
-                .clickAcceptTopUpButton();
-                Thread.sleep(1000);
-        openFXDemoAccountPage.writeCurrentBalance();
-        Assert.assertNotEquals(openFXDemoAccountPage.currentBalanceString, openFXDemoAccountPage.previousBalanceString);
+
     }
 
     @AfterMethod(alwaysRun = true)
