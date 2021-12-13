@@ -40,10 +40,9 @@ public class OpenFXTest {
         openFXDemoAccountPage.writePreviousBalance()
                 .clickTopUpButton()
                 .clickAcceptTopUpButton();
-                Thread.sleep(1000);
+                Thread.sleep(3000);
         openFXDemoAccountPage.writeCurrentBalance();
         Assert.assertNotEquals(openFXDemoAccountPage.currentBalanceString, openFXDemoAccountPage.previousBalanceString);
-
     }
 
     @AfterMethod(alwaysRun = true)
