@@ -3,6 +3,9 @@ package test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.GeckoDriverInfo;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -21,9 +24,9 @@ public class OpenFXTest {
 
     @BeforeMethod(alwaysRun = true)
     public void browserSetup() {
-        ChromeOptions options = new ChromeOptions();
+        FirefoxOptions options = new FirefoxOptions();
         options.addArguments("start-maximized");
-        driver = new ChromeDriver(options);
+        driver = new FirefoxDriver(options);
         openFXProfilePage = new OpenFXHomePage(driver)
                 .openPage()
                 .openLoginWindow()
@@ -40,7 +43,7 @@ public class OpenFXTest {
         openFXDemoAccountPage.writePreviousBalance()
                 .clickTopUpButton()
                 .clickAcceptTopUpButton();
-                Thread.sleep(3000);
+                Thread.sleep(1000);
         openFXDemoAccountPage.writeCurrentBalance();
         Assert.assertNotEquals(openFXDemoAccountPage.currentBalanceString, openFXDemoAccountPage.previousBalanceString);
     }
