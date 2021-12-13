@@ -1,5 +1,6 @@
 package test;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -27,6 +28,8 @@ public class OpenFXTest {
         FirefoxOptions options = new FirefoxOptions();
         options.addArguments("start-maximized");
         driver = new FirefoxDriver(options);
+        Dimension d = new Dimension(1296, 1010);
+        driver.manage().window().setSize(d);
         openFXProfilePage = new OpenFXHomePage(driver)
                 .openPage()
                 .openLoginWindow()
@@ -40,7 +43,12 @@ public class OpenFXTest {
         openFXAccountsPage = openFXProfilePage.selectViewAccountsTab();
         openFXAccountsPage.openSettingOfDemoAccountButtonClick();
         openFXDemoAccountPage = openFXAccountsPage.infoAboutAccountButtonClick();
-
+        openFXDemoAccountPage.writePreviousBalance()
+                .clickTopUpButton()
+                .clickAcceptTopUpButton();
+                Thread.sleep(1000);
+        openFXDemoAccountPage.writeCurrentBalance();
+        Assert.assertNotEquals(openFXDemoAccountPage.currentBalanceString, openFXDemoAccountPage.previousBalanceString);
     }
 
     @AfterMethod(alwaysRun = true)
