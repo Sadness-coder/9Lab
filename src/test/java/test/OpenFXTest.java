@@ -19,6 +19,8 @@ public class OpenFXTest {
     private OpenFXAccountsPage openFXAccountsPage;
     private OpenFXDemoAccountPage openFXDemoAccountPage;
     private OpenFXLoginPage openFXLoginPage;
+    private OpenFXPersonalData openFXPersonalData;
+    private OpenFXSkypeEditPage openFXSkypeEditPage;
 
     private String phoneNumber = "333898719";
     private String password = "Aezakmi123";
@@ -38,7 +40,7 @@ public class OpenFXTest {
                 .signIn();
     }
     @Test
-    public void TopUpDemoBalance() throws InterruptedException {
+    public void topUpDemoBalance() throws InterruptedException {
         openFXProfilePage.selectMyAccountsTab();
         openFXAccountsPage = openFXProfilePage.selectViewAccountsTab();
         openFXAccountsPage.openSettingOfDemoAccountButtonClick();
@@ -49,6 +51,17 @@ public class OpenFXTest {
                 Thread.sleep(1000);
         openFXDemoAccountPage.writeCurrentBalance();
         Assert.assertNotEquals(openFXDemoAccountPage.currentBalanceString, openFXDemoAccountPage.previousBalanceString);
+    }
+    @Test
+    public void switchSkypeInAccount() throws InterruptedException {
+        openFXProfilePage.selectMyProfileTab();
+        openFXPersonalData = openFXProfilePage.selectPersonalDataTab()
+                .writePrevSkype();
+        openFXSkypeEditPage = openFXPersonalData.clickEditSkypeButton();
+        openFXSkypeEditPage.insertSkype()
+                .writeCurrentSkype()
+                .saveNewSkype();
+        Assert.assertNotEquals(openFXSkypeEditPage.currSkypeString,openFXPersonalData.prevSkypeString );
     }
 
     @AfterMethod(alwaysRun = true)
