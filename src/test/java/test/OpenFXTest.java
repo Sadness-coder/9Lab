@@ -48,7 +48,7 @@ public class OpenFXTest {
         openFXDemoAccountPage.writePreviousBalance()
                 .clickTopUpButton()
                 .clickAcceptTopUpButton();
-                Thread.sleep(1000);
+                Thread.sleep(2000);
         openFXDemoAccountPage.writeCurrentBalance();
         Assert.assertNotEquals(openFXDemoAccountPage.currentBalanceString, openFXDemoAccountPage.previousBalanceString);
     }
