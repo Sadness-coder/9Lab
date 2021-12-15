@@ -20,8 +20,8 @@ public class OpenFXTest {
     private OpenFXPersonalData openFXPersonalData;
     private OpenFXSkypeEditPage openFXSkypeEditPage;
 
-    private String phoneNumber = "333898719";
-    private String password = "Aezakmi123";
+    private String phoneNumber = "7404483675";
+    private String password = "1234567Aa";
 
     @BeforeMethod(alwaysRun = true)
     public void browserSetup() {
